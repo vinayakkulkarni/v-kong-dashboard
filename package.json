@@ -1,0 +1,81 @@
+{
+  "name": "@vinayakkulkarni/v-kong-dashboard",
+  "version": "0.1.0",
+  "description": "Kong Dashboard built with Nuxt 3 🎉",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "npm run lint:eslint && npm run lint:prettier && npm run lint:css",
+    "lintfix": "npm run lint:eslint:fix && npm run lint:prettier:fix && npm run lint:css:fix",
+    "lint:js": "npm run lint:eslint && npm run lint:prettier",
+    "lint:eslint": "eslint \"{,!(node_modules|.nuxt|dist|static)/**/}*.{js,ts,vue}\" --ignore-path .gitignore",
+    "lint:eslint:fix": "eslint --fix \"{,!(node_modules|.nuxt|dist|static)/**/}*.{js,ts,vue}\" --ignore-path .gitignore",
+    "lint:prettier": "prettier --check \"{,!(node_modules|.nuxt|dist|static)/**/}*.{js,ts,vue}\" --ignore-path .gitignore",
+    "lint:prettier:fix": "prettier --write \"{,!(node_modules|.nuxt|dist|static)/**/}*.{js,ts,vue}\" --ignore-path .gitignore",
+    "lint:css": "stylelint '**/*.{css,scss,sass,vue}' --ignore-path .gitignore",
+    "lint:css:fix": "stylelint --fix '**/*.{css,scss,sass,vue}' --ignore-path .gitignore",
+    "release": "shipjs prepare",
+    "release:dry": "shipjs prepare --dry-run",
+    "release:auto": "shipjs prepare --yes",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@nuxtjs/robots": "^2.5.0",
+    "idb": "^7.0.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "@kevinmarrec/nuxt-pwa": "^0.4.2",
+    "@nuxtjs/google-fonts": "^3.0.0-0",
+    "@typescript-eslint/eslint-plugin": "^5.37.0",
+    "@typescript-eslint/parser": "^5.37.0",
+    "@vinayakkulkarni/prettier-config-vue": "^1.0.0",
+    "@vue/runtime-dom": "^3.2.39",
+    "@vueuse/core": "^9.2.0",
+    "@vueuse/nuxt": "^9.2.0",
+    "@windicss/plugin-animations": "^1.0.9",
+    "@windicss/plugin-scrollbar": "^1.2.3",
+    "eslint": "^8.23.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jsdoc": "^39.3.6",
+    "eslint-plugin-nuxt": "^4.0.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-security": "^1.5.0",
+    "eslint-plugin-vue": "^9.4.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "nuxt": "^3.0.0-rc.9",
+    "nuxt-windicss": "^2.5.2",
+    "prettier": "^2.7.1",
+    "sass": "^1.54.9",
+    "shipjs": "^0.24.4",
+    "stylelint": "^14.11.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-recommended-vue": "^1.4.0",
+    "stylelint-config-standard": "^28.0.0",
+    "typescript": "^4.8.3"
+  },
+  "repository": {
+    "url": "git+https://github.com/vinayakkulkarni/v-kong-dashboard.git",
+    "type": "git"
+  },
+  "author": {
+    "name": "Vinayak Kulkarni",
+    "email": "inbox.vinayak@gmail.com",
+    "url": "https://vinayakkulkarni.dev"
+  },
+  "engines": {
+    "node": ">=18.9.0",
+    "npm": ">=8.19.1"
+  },
+  "bugs": {
+    "url": "https://github.com/vinayakkulkarni/v-kong-dashboard/issues"
+  },
+  "homepage": "https://github.com/vinayakkulkarni/v-kong-dashboard"
+}
