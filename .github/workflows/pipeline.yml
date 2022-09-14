@@ -1,0 +1,44 @@
+name: 'The Pipeline'
+
+on:
+  push:
+    branches:
+      - main
+      - stage
+      - test
+      - dev
+  pull_request:
+    branches:
+      - main
+      - stage
+      - test
+      - dev
+
+concurrency:
+  group: ci-${{ github.ref }}-1
+  cancel-in-progress: true
+
+jobs:
+  extract-branch:
+    name: 'Fetch branch'
+    runs-on: ubuntu-latest
+    outputs:
+      current_branch: ${{ steps.get-branch.outputs.current_branch }}
+    steps:
+      - name: Extract branch name 🕊
+        id: get-branch
+        run: echo "::set-output name=current_branch::${GITHUB_REF##*/}"
+  ci:
+    needs:
+      - extract-branch
+    name: 'CI'
+    uses: vinayakkulkarni/v-kong-dashboard/.github/workflows/ci.yml@main
+  builder:
+    name: 'Builder'
+    needs:
+      - ci
+      - extract-branch
+    if: ${{ github.event_name == 'push' }}
+    uses: vinayakkulkarni/v-kong-dashboard/.github/workflows/builder.yml@main
+    with:
+      branch: ${{ needs.extract-branch.outputs.current_branch }}
