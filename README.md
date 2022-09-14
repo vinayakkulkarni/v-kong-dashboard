@@ -22,6 +22,14 @@ Deployment stack:
 - [AWS Cloudfront](https://aws.amazon.com/cloudfront/)
 - [Ship.js](https://github.com/algolia/shipjs)
 
+## Usage
+
+### Docker
+
+```sh
+$ docker run -p 3000:3000 ghcr.io/vinayakkulkarni/v-kong-dashboard:latest
+```
+
 ## Environment Setup
 
 ### Development 
@@ -31,6 +39,7 @@ $ cd v-kong-dashboard
 $ npm install
 $ npm run dev
 ```
+
 ## Release Process 🏗
 
 - Once all features/bugfixes are deployed on `dev`, create a PR from `dev` to `test`
@@ -56,7 +65,6 @@ $ npm run dev
 $ git fetch --all && git checkout dev && git rebase origin/test && git push
 ```
 Once ship.js automatically prepares the Pull Request, kindly merge it and rest is done automatically by GitHub action and is driven by `deploy-{env}.yml` file.
-
 
 ## Time logging ⌚️
 
@@ -85,6 +93,7 @@ $ git push
 Done. Now goto Jira board, and check for the Time Tracking section on the Jira ticket `JIRA-123`
 
 > Note: Each commit should have atleast the Jira ticket & time associated with it.
+
 ## Contributing
 
 1. Create your feature branch from `dev` (`git checkout -b feat/new-feature`)
