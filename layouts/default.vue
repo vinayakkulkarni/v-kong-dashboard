@@ -1,35 +1,46 @@
 <template>
-  <div
-    class="flex flex-col w-screen h-screen overflow-hidden text-gray-800 transition-colors duration-200 ease-linear bg-gray-100 select-none min-w-screen dark:bg-gray-900 dark:text-gray-100"
+  <section
+    class="flex flex-col w-screen h-screen overflow-hidden transition-colors duration-200 ease-linear bg-gray-100 text-gray-800 select-none min-w-screen dark:bg-gray-800 dark:text-gray-100"
   >
-    <!-- Header -->
-    <header>
-      <v-header />
-    </header>
-    <!-- Body -->
-    <main
-      class="flex-1 p-4 overflow-y-auto scrollbar-thin scrollbar-track-gray-400 scrollbar-thumb-gray-600 dark:scrollbar-thumb-gray-400 dark:scrollbar-track-gray-600"
-    >
-      <div class="flex items-center justify-center h-full">
+    <!-- Static sidebar for desktop -->
+    <v-sidebar v-model:is-open="isSidebarOpen" :is-dark="isDark" />
+    <div class="flex flex-col w-full h-full md:pl-64">
+      <!-- Header -->
+      <v-header
+        v-model:is-open="isSidebarOpen"
+        :is-dark="isDark"
+        :toggle-dark="toggleDark"
+      />
+      <!-- Content -->
+      <main
+        class="flex-1 p-4 overflow-y-auto scrollbar-thin scrollbar-track-gray-400 scrollbar-thumb-gray-600 dark:scrollbar-thumb-gray-400 dark:scrollbar-track-gray-600"
+      >
         <slot />
-      </div>
-    </main>
-    <!-- Footer -->
-    <footer>
-      <v-footer />
-    </footer>
-  </div>
+      </main>
+    </div>
+  </section>
 </template>
 
 <script lang="ts">
-  import VFooter from '~/components/common/ui/VFooter.vue';
   import VHeader from '~/components/common/ui/VHeader.vue';
+  import VSidebar from '~/components/common/ui/VSidebar.vue';
 
   export default defineComponent({
     name: 'DefaultLayout',
     components: {
+      VSidebar,
       VHeader,
-      VFooter,
+    },
+    setup() {
+      const isDark = useDark();
+      const isSidebarOpen = ref(false);
+      const toggleDark = useToggle(isDark);
+
+      return {
+        isSidebarOpen,
+        isDark,
+        toggleDark,
+      };
     },
   });
 </script>
