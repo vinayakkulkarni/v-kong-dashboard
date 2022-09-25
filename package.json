@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@nuxtjs/robots": "^2.5.0",
-    "idb": "^7.0.2"
+    "idb": "^7.1.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
