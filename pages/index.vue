@@ -1,15 +1,18 @@
 <template>
-  <section
-    class="max-w-screen-sm w-full bg-white text-gray-900 rounded shadow p-4"
-  >
-    <form class="space-y-2" action="#" @submit.prevent="submit">
+  <section class="w-full">
+    <form
+      v-if="!isKong"
+      class="max-w-screen-sm space-y-2 bg-white text-gray-900 rounded shadow p-4"
+      action="#"
+      @submit.prevent="submit"
+    >
       <!-- Admin API URL -->
       <div>
         <label
           for="kong-admin-url"
           class="block text-sm font-medium text-gray-700"
         >
-          Kong Admin API URL
+          Kong Admin API URL <span class="text-red-400">*</span>
         </label>
         <div class="mt-1">
           <input
@@ -17,6 +20,8 @@
             v-model="form.url"
             type="text"
             name="kong-admin-url"
+            required="true"
+            autofocus="true"
             class="block w-full rounded-md border-gray-300 shadow-sm focus:border-violet-500 focus:ring-violet-500 sm:text-sm"
             placeholder="https://kong-admin.example.com"
           />
@@ -37,7 +42,7 @@
             type="text"
             name="custom-headers"
             class="block w-full rounded-md border-gray-300 shadow-sm focus:border-violet-500 focus:ring-violet-500 sm:text-sm"
-            placeholder="{ 'Authorization': 'Basic 1234567890' }"
+            placeholder="'{ Authorization': 'Basic 1234567890' }'"
           />
         </div>
       </div>
@@ -59,24 +64,62 @@
         </span>
       </div>
     </form>
+    <div v-else class="bg-white text-gray-900 rounded shadow p-4">
+      {{ data }}
+    </div>
   </section>
 </template>
 
 <script lang="ts">
+  import type { IDBPDatabase } from 'idb';
+  import type { Auth, MyDB } from '~/types/auth';
+  import type { KongResponse } from '~/types/kong';
+
   export default defineComponent({
     name: 'HomePage',
     setup() {
+      let db: IDBPDatabase<MyDB>;
       const form = ref({
         url: '',
         headers: '',
       });
-      const submit = () => {
-        console.log('form submitted', form);
+      const data = ref<KongResponse | null>(null);
+      const isKong = ref(false);
+      onMounted(async () => {
+        db = await useIdb();
+        if (db) {
+          const kong = await db.getAllFromIndex('auth', 'by-url', undefined, 0);
+          if (kong && kong.length > 0) {
+            const { url, headers } = kong.at(-1) as Auth;
+            console.log('url: ', url);
+            console.log('headers: ', headers);
+            form.value.url = url;
+            form.value.headers = headers || '';
+            isKong.value = true;
+            await submit();
+          }
+        }
+      });
+
+      const submit = async () => {
+        data.value = await $fetch(form.value.url, {
+          method: 'GET',
+          headers: {},
+        });
+        if (data.value && 'hostname' in data.value && !isKong.value) {
+          isKong.value = true;
+          await db.put('auth', {
+            url: form.value.url,
+            headers: form.value.headers,
+          });
+        }
       };
 
       return {
         form,
         submit,
+        isKong,
+        data,
       };
     },
   });
