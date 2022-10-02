@@ -64,8 +64,21 @@
         </span>
       </div>
     </form>
-    <div v-else class="bg-white text-gray-900 rounded shadow p-4">
-      {{ data }}
+    <div v-else class="rounded shadow p-4">
+      <!-- Card -->
+      <div class="rounded shadow dark:border dark:border-gray-700">
+        <div
+          class="border-b border-gray-200 dark:border-gray-700 px-4 py-5 sm:px-6"
+        >
+          <h3 class="text-lg font-medium leading-6">Kong Details</h3>
+          <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+            Kong :: v2.8.1
+          </p>
+        </div>
+        <div class="p-4">
+          {{ data }}
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -74,7 +87,6 @@
   import type { IDBPDatabase } from 'idb';
   import type { Auth, MyDB } from '~/types/auth';
   import type { KongResponse } from '~/types/kong';
-
   export default defineComponent({
     name: 'HomePage',
     setup() {
