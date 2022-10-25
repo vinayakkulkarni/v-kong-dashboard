@@ -43,7 +43,7 @@
     "@windicss/plugin-scrollbar": "^1.2.3",
     "eslint": "^8.25.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-jsdoc": "^39.3.12",
+    "eslint-plugin-jsdoc": "^39.3.25",
     "eslint-plugin-nuxt": "^4.0.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-security": "^1.5.0",
