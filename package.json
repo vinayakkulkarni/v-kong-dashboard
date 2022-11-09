@@ -36,7 +36,7 @@
     "@typescript-eslint/eslint-plugin": "^5.42.1",
     "@typescript-eslint/parser": "^5.42.1",
     "@vinayakkulkarni/prettier-config-vue": "^1.0.0",
-    "@vue/runtime-dom": "^3.2.41",
+    "@vue/runtime-dom": "^3.2.43",
     "@vueuse/core": "^9.4.0",
     "@vueuse/nuxt": "^9.4.0",
     "@windicss/plugin-animations": "^1.0.9",
