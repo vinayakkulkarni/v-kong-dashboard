@@ -1,4 +1,6 @@
-export const windicss = {
+import type { NuxtConfig } from '@nuxt/schema';
+
+export const windicss: NuxtConfig['windicss'] = {
   analyze: {
     analysis: {
       interpretUtilities: false,

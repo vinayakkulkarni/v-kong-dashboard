@@ -1,6 +1,6 @@
-import { NuxtConfig } from '@nuxt/schema';
+import type { NuxtAppConfig } from '@nuxt/schema';
 
-export const meta: NuxtConfig['meta'] = {
+export const head: NuxtAppConfig['head'] = {
   title: 'Kong Dashboard',
   meta: [
     {
@@ -13,7 +13,7 @@ export const meta: NuxtConfig['meta'] = {
     {
       hid: 'description',
       name: 'description',
-      content: 'Portfolio site for Vinayak Kulkarni ',
+      content: 'Kong Admin Dashboard for managing Kong APIs',
     },
     {
       name: 'format-detection',

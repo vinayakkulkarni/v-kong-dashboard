@@ -1,9 +1,9 @@
-import { NuxtConfig } from '@nuxt/schema';
+import type { NuxtConfig } from '@nuxt/schema';
 import { fonts } from './google-fonts';
 import { windicss } from './windicss';
 
 export const modules: NuxtConfig['modules'] = [
-  //
+  // https://github.com/nuxt-community/google-fonts-module
   ['@nuxtjs/google-fonts', fonts],
   // https://github.com/nuxt-community/robots-module#setup
   '@nuxtjs/robots',

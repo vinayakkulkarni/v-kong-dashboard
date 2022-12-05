@@ -1,17 +1,20 @@
-import { defineNuxtConfig } from 'nuxt';
-import { css, meta, modules, plugins, publicRuntimeConfig } from './config';
+import { defineNuxtConfig } from 'nuxt/config';
+import {
+  app,
+  css,
+  modules,
+  plugins,
+  runtimeConfig,
+  typescript,
+} from './config';
 
-// https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-  ssr: false,
+  app,
+  ssr: true,
   components: false,
-  meta,
   css,
   plugins,
   modules,
-  publicRuntimeConfig,
-  typescript: {
-    strict: true,
-    shim: false,
-  },
+  runtimeConfig,
+  typescript,
 });

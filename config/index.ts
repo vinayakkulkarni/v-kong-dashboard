@@ -1,13 +1,24 @@
-import { NuxtConfig, PublicRuntimeConfig } from '@nuxt/schema';
+import { NuxtConfig } from '@nuxt/schema';
+import { head } from './head';
 
-const publicRuntimeConfig: PublicRuntimeConfig = {
-  appVersion: process.env.npm_package_version || '0.0.0',
+const app: NuxtConfig['app'] = {
+  head,
+};
+
+const runtimeConfig: NuxtConfig['runtimeConfig'] = {
+  public: {
+    appVersion: process.env.npm_package_version,
+  },
 };
 
 const css: NuxtConfig['css'] = ['~/assets/css/global.css'];
 
 const plugins: NuxtConfig['plugins'] = [];
 
-export { meta } from './meta';
+const typescript: NuxtConfig['typescript'] = {
+  strict: true,
+  shim: false,
+};
+
 export { modules } from './modules';
-export { css, plugins, publicRuntimeConfig };
+export { app, css, plugins, runtimeConfig, typescript };

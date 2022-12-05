@@ -1,4 +1,4 @@
-import { NuxtConfig } from '@nuxt/schema';
+import type { NuxtConfig } from '@nuxt/schema';
 
 export const fonts: NuxtConfig['googleFonts'] = {
   download: true,
