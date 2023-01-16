@@ -33,7 +33,7 @@
     "@commitlint/config-conventional": "^17.4.2",
     "@kevinmarrec/nuxt-pwa": "^0.15.0",
     "@nuxtjs/google-fonts": "^3.0.0-1",
-    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/eslint-plugin": "^5.48.2",
     "@typescript-eslint/parser": "^5.48.1",
     "@vinayakkulkarni/prettier-config-vue": "^1.0.0",
     "@vue/runtime-dom": "^3.2.45",
