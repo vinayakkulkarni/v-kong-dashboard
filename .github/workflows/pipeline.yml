@@ -33,6 +33,14 @@ jobs:
       - extract-branch
     name: 'CI'
     uses: vinayakkulkarni/v-kong-dashboard/.github/workflows/ci.yml@main
+  automerger:
+    name: 'Automerge Dependabot PRs'
+    needs:
+      - extract-branch
+      - ci
+    if: >
+      github.event_name == 'pull_request' && github.event.pull_request.user.login == 'dependabot[bot]'
+    uses: vinayakkulkarni/v-kong-dashboard/.github/workflows/automerger.yml@dev
   builder:
     name: 'Builder'
     needs:
