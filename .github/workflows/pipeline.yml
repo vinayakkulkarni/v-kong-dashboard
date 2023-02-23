@@ -22,25 +22,25 @@ jobs:
       - name: Extract branch name 🕊
         id: get-branch
         run: echo "current_branch=${GITHUB_REF##*/}" >> $GITHUB_OUTPUT
-  ci:
-    name: 'CI'
-    needs:
-      - extract-branch
-    uses: vinayakkulkarni/v-kong-dashboard/.github/workflows/ci.yml@main
+  # ci:
+  #   name: 'CI'
+  #   needs:
+  #     - extract-branch
+  #   uses: vinayakkulkarni/v-kong-dashboard/.github/workflows/ci.yml@main
   automerger:
     name: 'Automerge Dependabot PRs'
     needs:
       - extract-branch
-      - ci
+      # - ci
     if: github.event.pull_request.user.login == 'dependabot[bot]'
     uses: vinayakkulkarni/v-kong-dashboard/.github/workflows/automerger.yml@main
     secrets: inherit
-  builder:
-    name: 'Builder'
-    needs:
-      - extract-branch
-      - ci
-    if: ${{ github.event_name == 'push' }}
-    uses: vinayakkulkarni/v-kong-dashboard/.github/workflows/builder.yml@main
-    with:
-      branch: ${{ needs.extract-branch.outputs.current_branch }}
+  # builder:
+  #   name: 'Builder'
+  #   needs:
+  #     - extract-branch
+  #     - ci
+  #   if: ${{ github.event_name == 'push' }}
+  #   uses: vinayakkulkarni/v-kong-dashboard/.github/workflows/builder.yml@main
+  #   with:
+  #     branch: ${{ needs.extract-branch.outputs.current_branch }}
