@@ -10,14 +10,13 @@ on:
 jobs:
   dependabot:
     runs-on: ubuntu-latest
-    environment: dependabot
+    environment: 'dependabot'
     steps:
       - name: Dependabot metadata 🤖
         id: dependabot_metadata
         uses: dependabot/fetch-metadata@v1.2.1
         with:
-          alert-lookup: true
-          github-token: ${{ secrets.DEPENDABOT_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Authenticate CLI with PAT 🔐
         run: echo ${{ secrets.DEPENDABOT_TOKEN }} | gh auth login --with-token
