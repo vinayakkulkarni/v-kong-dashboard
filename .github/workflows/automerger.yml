@@ -1,4 +1,4 @@
-name: 'Auto Merge PRs'
+name: 'Automerge Dependabot PRs'
 
 on:
   workflow_call:
@@ -8,10 +8,6 @@ on:
         default: 'dependabot'
         required: true
         type: string
-    secrets:
-      dependabot-token:
-        description: 'Dependabot token'
-        required: true
 
 jobs:
   dependabot:
@@ -24,10 +20,10 @@ jobs:
         uses: dependabot/fetch-metadata@v1.2.1
         with:
           alert-lookup: true
-          github-token: ${{ secrets.dependabot-token }}
+          github-token: ${{ secrets.DEPENDABOT_TOKEN }}
 
       - name: Authenticate CLI with PAT 🔐
-        run: echo "${{ secrets.dependabot-token }}" | gh auth login --with-token
+        run: echo "${{ secrets.DEPENDABOT_TOKEN }}" | gh auth login --with-token
 
       - name: Enable auto-merge for Dependabot PRs 🕺
         if: steps.dependabot_metadata.outputs.dependency-type == 'direct:development' && (steps.dependabot_metadata.outputs.update-type == 'version-update:semver-minor' || steps.dependabot_metadata.outputs.update-type == 'version-update:semver-patch')
