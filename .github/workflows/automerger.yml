@@ -7,21 +7,16 @@ on:
         description: 'Dependabot token'
         required: true
 
-permissions:
-  pull-requests: write
-  contents: write
-
 jobs:
   dependabot:
     runs-on: ubuntu-latest
-    env:
-      DEPENDABOT_TOKEN: ${{ secrets.DEPENDABOT_TOKEN }}
+    env: ${{ secrets }}
     steps:
       - name: Dependabot metadata 🤖
         id: dependabot_metadata
         uses: dependabot/fetch-metadata@v1.3.6
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.DEPENDABOT_TOKEN }}
 
       - name: Authenticate CLI with PAT 🔐
         run: echo "${{ secrets.DEPENDABOT_TOKEN }}" | gh auth login --with-token
