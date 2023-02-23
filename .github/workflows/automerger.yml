@@ -2,6 +2,12 @@ name: 'Auto Merge PRs'
 
 on:
   workflow_call:
+    inputs:
+      environment:
+        description: 'The environment for the workflow'
+        default: 'main'
+        required: true
+        type: string
     secrets:
       DEPENDABOT_TOKEN:
         description: 'Dependabot Personal Access Token'
@@ -10,6 +16,8 @@ on:
 jobs:
   dependabot:
     runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
     steps:
       - name: Dependabot metadata
         id: dependabot_metadata
