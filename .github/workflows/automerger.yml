@@ -2,10 +2,6 @@ name: 'Auto Merge PRs'
 
 on:
   workflow_call:
-    secrets:
-      DEPENDABOT_TOKEN:
-        description: 'Dependabot token'
-        required: true
 
 jobs:
   dependabot:
