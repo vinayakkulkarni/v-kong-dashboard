@@ -114,9 +114,9 @@
         <div class="relative ml-3">
           <div>
             <button
+              id="user-menu-button"
               type="button"
               class="flex max-w-xs items-center rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2"
-              id="user-menu-button"
               aria-expanded="false"
               aria-haspopup="true"
               @click="isProfileDropdown = !isProfileDropdown"
@@ -146,21 +146,21 @@
               tabindex="-1"
             >
               <a
+                id="user-menu-item-1"
                 href="#"
                 class="block px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800"
                 role="menuitem"
                 tabindex="-1"
-                id="user-menu-item-1"
               >
                 Settings
               </a>
 
               <a
+                id="user-menu-item-2"
                 href="#"
                 class="block px-4 py-2 text-sm text-gray-700 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-800"
                 role="menuitem"
                 tabindex="-1"
-                id="user-menu-item-2"
               >
                 Sign out
               </a>
