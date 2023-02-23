@@ -22,9 +22,15 @@ jobs:
       - name: Authenticate CLI with PAT 🔐
         run: echo "${{ secrets.DEPENDABOT_TOKEN }}" | gh auth login --with-token
 
-      - name: Approve & auto-merge Dependabot PRs 🕺
+      - name: Approve Dependabot PRs 👍
+        run: gh pr review --approve "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.DEPENDABOT_TOKEN }}
+
+      - name: Auto-merge Dependabot PRs 🕺
         if: steps.metadata.outputs.dependency-type == 'direct:development' && (steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch')
-        run: gh pr review --approve "$PR_URL" --comment -b "LGTM" && gh pr merge --auto --merge "$PR_URL"
+        run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GITHUB_TOKEN: ${{ secrets.DEPENDABOT_TOKEN }}
