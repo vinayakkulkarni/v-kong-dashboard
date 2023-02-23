@@ -10,6 +10,7 @@ on:
 jobs:
   dependabot:
     runs-on: ubuntu-latest
+    environment: dependabot
     steps:
       - name: Dependabot metadata 🤖
         id: dependabot_metadata
