@@ -23,23 +23,16 @@ jobs:
         id: get-branch
         run: echo "current_branch=${GITHUB_REF##*/}" >> $GITHUB_OUTPUT
   ci:
-    name: 'CI'
     needs:
       - extract-branch
     uses: vinayakkulkarni/v-kong-dashboard/.github/workflows/ci.yml@main
   automerger:
-    name: 'Automerge Dependabot PRs'
     needs:
       - extract-branch
       - ci
     if: github.event.pull_request.user.login == 'dependabot[bot]'
     uses: vinayakkulkarni/v-kong-dashboard/.github/workflows/automerger.yml@main
-    with:
-      environment: ${{ needs.extract-branch.outputs.current_branch }}
-    secrets:
-      DEPENDABOT_TOKEN: ${{ secrets.DEPENDABOT_TOKEN }}
   builder:
-    name: 'Builder'
     needs:
       - extract-branch
       - ci
