@@ -37,7 +37,7 @@ jobs:
     with:
       environment: 'dependabot'
     secrets:
-      DEPENDABOT_TOKEN: ${{ secrets.DEPENDABOT_TOKEN }}
+      dependabot-token: ${{ secrets.DEPENDABOT_TOKEN }}
   # builder:
   #   name: 'Builder'
   #   needs:
