@@ -13,35 +13,26 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # extract-branch:
-  #   name: 'Fetch branch'
-  #   runs-on: ubuntu-latest
-  #   outputs:
-  #     current_branch: ${{ steps.get-branch.outputs.current_branch }}
-  #   steps:
-  #     - name: Extract branch name 🕊
-  #       id: get-branch
-  #       run: echo "current_branch=${GITHUB_REF##*/}" >> $GITHUB_OUTPUT
-  # ci:
-  #   name: 'CI'
-  #   needs:
-  #     - extract-branch
-  #   uses: vinayakkulkarni/v-kong-dashboard/.github/workflows/ci.yml@main
-  automerger:
-    name: 'Automerge Dependabot PRs'
-    # needs:
-    # - extract-branch
-    # - ci
-    if: github.event.pull_request.user.login == 'dependabot[bot]'
-    uses: vinayakkulkarni/v-kong-dashboard/.github/workflows/automerger.yml@main
-    secrets:
-      DEPENDABOT_TOKEN: ${{ secrets.DEPENDABOT_TOKEN }}
-  # builder:
-  #   name: 'Builder'
-  #   needs:
-  #     - extract-branch
-  #     - ci
-  #   if: ${{ github.event_name == 'push' }}
-  #   uses: vinayakkulkarni/v-kong-dashboard/.github/workflows/builder.yml@main
-  #   with:
-  #     branch: ${{ needs.extract-branch.outputs.current_branch }}
+  extract-branch:
+    name: 'Fetch branch'
+    runs-on: ubuntu-latest
+    outputs:
+      current_branch: ${{ steps.get-branch.outputs.current_branch }}
+    steps:
+      - name: Extract branch name 🕊
+        id: get-branch
+        run: echo "current_branch=${GITHUB_REF##*/}" >> $GITHUB_OUTPUT
+  ci:
+    name: 'CI'
+    needs:
+      - extract-branch
+    uses: vinayakkulkarni/v-kong-dashboard/.github/workflows/ci.yml@main
+  builder:
+    name: 'Builder'
+    needs:
+      - extract-branch
+      - ci
+    if: ${{ github.event_name == 'push' }}
+    uses: vinayakkulkarni/v-kong-dashboard/.github/workflows/builder.yml@main
+    with:
+      branch: ${{ needs.extract-branch.outputs.current_branch }}

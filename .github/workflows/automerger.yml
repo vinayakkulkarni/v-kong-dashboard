@@ -1,19 +1,18 @@
 name: 'Automerge Dependabot PRs'
 
-on:
-  workflow_call:
-    secrets:
-      DEPENDABOT_TOKEN:
-        description: 'Dependabot token'
-        required: true
+on: pull_request_target
+
+permissions:
+  pull-requests: write
+  contents: write
 
 jobs:
   dependabot:
     runs-on: ubuntu-latest
-    environment: 'dependabot'
+    if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       - name: Dependabot metadata 🤖
-        id: dependabot_metadata
+        id: metadata
         uses: dependabot/fetch-metadata@v1.3.6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -22,7 +21,8 @@ jobs:
         run: echo "${{ secrets.DEPENDABOT_TOKEN }}" | gh auth login --with-token
 
       - name: Enable auto-merge for Dependabot PRs 🕺
-        if: steps.dependabot_metadata.outputs.dependency-type == 'direct:development' && (steps.dependabot_metadata.outputs.update-type == 'version-update:semver-minor' || steps.dependabot_metadata.outputs.update-type == 'version-update:semver-patch')
+        if: steps.metadata.outputs.dependency-type == 'direct:development' && (steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch')
         run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.DEPENDABOT_TOKEN }}
