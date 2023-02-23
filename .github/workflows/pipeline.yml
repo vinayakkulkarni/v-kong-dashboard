@@ -36,7 +36,8 @@ jobs:
     uses: vinayakkulkarni/v-kong-dashboard/.github/workflows/automerger.yml@main
     with:
       environment: 'dependabot'
-    secrets: inherit
+    secrets:
+      dependabot-token: ${{ secrets.DEPENDABOT_TOKEN }}
   # builder:
   #   name: 'Builder'
   #   needs:
