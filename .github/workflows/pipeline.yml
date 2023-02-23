@@ -9,6 +9,15 @@ on:
       - main
 
 jobs:
+  extract-branch:
+    name: 'Fetch branch'
+    runs-on: ubuntu-latest
+    outputs:
+      current_branch: ${{ steps.get-branch.outputs.current_branch }}
+    steps:
+      - name: Extract branch name 🕊
+        id: get-branch
+        run: echo "current_branch=${GITHUB_REF##*/}" >> $GITHUB_OUTPUT
   ci:
     name: 'CI'
     uses: vinayakkulkarni/v-kong-dashboard/.github/workflows/ci.yml@main
@@ -21,6 +30,7 @@ jobs:
   builder:
     name: 'Builder'
     needs:
+      - extract-branch
       - ci
     if: ${{ github.event_name == 'push' }}
     uses: vinayakkulkarni/v-kong-dashboard/.github/workflows/builder.yml@main
