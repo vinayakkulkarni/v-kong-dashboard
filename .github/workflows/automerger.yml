@@ -2,9 +2,12 @@ name: 'Automerge Dependabot PRs'
 
 on:
   workflow_run:
-    workflows: ['The Pipeline']
+    workflows:
+      - The Pipeline
     types:
       - completed
+    branches:
+      - main
 
 permissions:
   pull-requests: write
