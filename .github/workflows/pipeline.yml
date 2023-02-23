@@ -35,7 +35,7 @@ jobs:
     if: github.event.pull_request.user.login == 'dependabot[bot]'
     uses: vinayakkulkarni/v-kong-dashboard/.github/workflows/automerger.yml@main
     secrets:
-      DEPENDABOT_TOKEN: ${{ secrets.DEPENDABOT_TOKEN }}
+      DEPENDABOT_TOKEN: ${{ secrets.V_KONG_DEPENDABOT_TOKEN }}
   builder:
     name: 'Builder'
     needs:
