@@ -15,7 +15,9 @@ jobs:
         id: metadata
         uses: dependabot/fetch-metadata@v1.3.6
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          alert-lookup: true
+          compat-lookup: true
+          github-token: ${{ secrets.DEPENDABOT_TOKEN }}
 
       - name: Authenticate CLI with PAT 🔐
         run: echo "${{ secrets.DEPENDABOT_TOKEN }}" | gh auth login --with-token
