@@ -2,6 +2,12 @@ name: 'Auto Merge PRs'
 
 on:
   workflow_call:
+    inputs:
+      environment:
+        description: 'The environment for the workflow'
+        default: 'dependabot'
+        required: true
+        type: string
     secrets:
       DEPENDABOT_TOKEN:
         description: 'Dependabot PAT'
@@ -10,7 +16,8 @@ on:
 jobs:
   dependabot:
     runs-on: ubuntu-latest
-    environment: 'dependabot'
+    environment:
+      name: ${{ inputs.environment }}
     steps:
       - name: Dependabot metadata 🤖
         id: dependabot_metadata
@@ -19,7 +26,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Authenticate CLI with PAT 🔐
-        run: echo ${{ secrets.DEPENDABOT_TOKEN }} | gh auth login --with-token
+        run: echo "${{ secrets.DEPENDABOT_TOKEN }}" | gh auth login --with-token
 
       - name: Approve a PR if not already approved
         run: |
