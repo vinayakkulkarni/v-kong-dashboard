@@ -15,10 +15,11 @@ jobs:
         id: dependabot_metadata
         uses: dependabot/fetch-metadata@v1.2.1
         with:
+          alert-lookup: true
           github-token: ${{ secrets.DEPENDABOT_TOKEN }}
 
       - name: Authenticate CLI with PAT 🔐
-        run: echo "${{ secrets.DEPENDABOT_TOKEN }}" | gh auth login --with-token
+        run: echo ${{ secrets.DEPENDABOT_TOKEN }} | gh auth login --with-token
 
       - name: Enable auto-merge for Dependabot PRs 🕺
         if: steps.dependabot_metadata.outputs.dependency-type == 'direct:development' && (steps.dependabot_metadata.outputs.update-type == 'version-update:semver-minor' || steps.dependabot_metadata.outputs.update-type == 'version-update:semver-patch')
