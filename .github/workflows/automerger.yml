@@ -2,12 +2,6 @@ name: 'Automerge Dependabot PRs'
 
 on:
   workflow_call:
-    inputs:
-      environment:
-        description: 'The environment for the workflow'
-        default: 'dependabot'
-        required: true
-        type: string
     secrets:
       dependabot-token:
         description: 'Dependabot token'
@@ -16,14 +10,11 @@ on:
 jobs:
   dependabot:
     runs-on: ubuntu-latest
-    environment:
-      name: ${{ inputs.environment }}
     steps:
       - name: Dependabot metadata 🤖
         id: dependabot_metadata
         uses: dependabot/fetch-metadata@v1.3.6
         with:
-          alert-lookup: true
           github-token: ${{ secrets.dependabot-token }}
 
       - name: Authenticate CLI with PAT 🔐
