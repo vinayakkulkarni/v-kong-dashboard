@@ -30,7 +30,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies 🚀
-        run: npm ci --prefer-offline --no-audit --omit=optional
+        run: npm ci --prefer-offline --no-audit
 
       - name: Check lint issues in codebase 👀
         uses: wearerequired/lint-action@v2
