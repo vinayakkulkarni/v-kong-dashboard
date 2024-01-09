@@ -54,4 +54,4 @@ jobs:
           ignore: DL3007,DL3008
 
       - name: Check static site generation 🎉
-        run: npm run generate
+        run: npm run build
