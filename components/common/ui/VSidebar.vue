@@ -24,39 +24,30 @@
           v-if="!isOpen"
           class="relative flex w-full max-w-xs flex-1 flex-col bg-gray-800 pt-5 pb-4"
         >
-          <transition
-            enter-from-class="ease-in-out duration-300"
-            enter-active-class="opacity-0"
-            enter-to-class="opacity-100"
-            leave-from-class="ease-in-out duration-300"
-            leave-active-class="opacity-100"
-            leave-to-class="opacity-0"
-          >
-            <div class="absolute top-0 right-0 -mr-12 pt-2">
-              <button
-                type="button"
-                class="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-                @click="$emit('update:is-open', !isOpen)"
+          <div class="absolute top-0 right-0 -mr-12 pt-2">
+            <button
+              type="button"
+              class="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+              @click="$emit('update:is-open', !isOpen)"
+            >
+              <span class="sr-only">Close sidebar</span>
+              <svg
+                class="h-6 w-6 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                aria-hidden="true"
               >
-                <span class="sr-only">Close sidebar</span>
-                <svg
-                  class="h-6 w-6 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-            </div>
-          </transition>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
 
           <div class="flex flex-shrink-0 items-center px-4">
             <svg

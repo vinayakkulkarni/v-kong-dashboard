@@ -26,13 +26,13 @@ jobs:
     name: 'CI'
     needs:
       - extract-branch
-    uses: vinayakkulkarni/v-kong-dashboard/.github/workflows/ci.yml@main
+    uses: ./.github/workflows/ci.yml
   builder:
     name: 'Builder'
     needs:
       - extract-branch
       - ci
     if: ${{ github.event_name == 'push' }}
-    uses: vinayakkulkarni/v-kong-dashboard/.github/workflows/builder.yml@main
+    uses: ./.github/workflows/builder.yml
     with:
       branch: ${{ needs.extract-branch.outputs.current_branch }}

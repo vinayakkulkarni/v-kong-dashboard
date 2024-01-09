@@ -1,6 +1,6 @@
 import type { NuxtConfig } from '@nuxt/schema';
-import { fonts } from './google-fonts';
-import { windicss } from './windicss';
+import { config as fonts } from './google-fonts';
+import { config as unocss } from './unocss';
 
 export const modules: NuxtConfig['modules'] = [
   // https://github.com/nuxt-community/google-fonts-module
@@ -11,6 +11,6 @@ export const modules: NuxtConfig['modules'] = [
   '@vueuse/nuxt',
   // https://github.com/kevinmarrec/nuxt-pwa-module#nuxt-3-pwa
   '@kevinmarrec/nuxt-pwa',
-  // https://windicss.org/integrations/nuxt.html
-  ['nuxt-windicss', windicss],
+  // https://unocss.dev/integrations/nuxt
+  ['@unocss/nuxt', unocss],
 ];

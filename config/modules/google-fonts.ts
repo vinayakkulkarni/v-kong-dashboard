@@ -1,6 +1,6 @@
 import type { NuxtConfig } from '@nuxt/schema';
 
-export const fonts: NuxtConfig['googleFonts'] = {
+export const config: NuxtConfig['googleFonts'] = {
   download: true,
   display: 'swap',
   families: {

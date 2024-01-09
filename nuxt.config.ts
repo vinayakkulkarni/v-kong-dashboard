@@ -1,20 +1,25 @@
-import { defineNuxtConfig } from 'nuxt/config';
 import {
   app,
+  components,
   css,
+  experimental,
+  nitro,
   modules,
   plugins,
+  routeRules,
   runtimeConfig,
   typescript,
 } from './config';
 
 export default defineNuxtConfig({
   app,
-  ssr: true,
-  components: false,
+  components,
   css,
-  plugins,
+  experimental,
+  nitro,
   modules,
+  plugins,
+  routeRules,
   runtimeConfig,
   typescript,
 });

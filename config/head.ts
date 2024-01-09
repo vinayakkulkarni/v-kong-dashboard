@@ -1,4 +1,4 @@
-import type { NuxtAppConfig } from '@nuxt/schema';
+import type { NuxtAppConfig } from 'nuxt/schema';
 
 export const head: NuxtAppConfig['head'] = {
   title: 'Kong Dashboard',
