@@ -25,7 +25,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@nuxtjs/robots": "^3.0.0",
+    "@nuxtjs/robots": "^4.1.8",
     "idb": "^8.0.0"
   },
   "devDependencies": {
