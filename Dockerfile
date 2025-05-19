@@ -1,4 +1,4 @@
-FROM node:current-alpine
+FROM node:23.11.1-alpine3.21
 
 RUN mkdir -p /usr/src/nuxt-app
 WORKDIR /usr/src/nuxt-app
